@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  app: &app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    volumes:
+      - rails-storage:/rails/storage
+    restart: always
+    environment:
+      # see config/master.key
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+
+volumes:
+  rails-storage:

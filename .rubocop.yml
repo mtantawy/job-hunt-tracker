@@ -1,0 +1,9 @@
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+require:
+  - rubocop-rails
+AllCops:
+    NewCops: enable
+
+Rails/I18nLocaleTexts:
+  Enabled: false

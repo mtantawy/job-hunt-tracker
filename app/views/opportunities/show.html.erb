@@ -1,0 +1,83 @@
+<div class="row py-3">
+        <h1>
+            Opportunity: <%= @opportunity.company_name %>
+            <span class="badge text-bg-primary rounded-pill"><%= Opportunity.states[@opportunity.state].capitalize %></span>
+            <%= link_to edit_opportunity_path do %>
+                <i class="bi bi-pencil fs-2"></i>
+            <% end %>
+        </h1>
+            <%= link_to "View all Opportunities", opportunities_path %>
+<div class="row py-3">
+
+<hr>
+
+<div class="row">
+    <div class="col-8">
+        <dl>
+            <dt>Source Name</dt>
+            <dd><%= @opportunity.source_name %></dd>
+            <dt>Source Link</dt>
+            <dd><%= link_to_unless @opportunity.source_link.blank?, nil, @opportunity.source_link, target: "_blank", rel: "nofollow" %></dd>
+            <dt>Company Name</dt>
+            <dd><%= @opportunity.company_name %></dd>
+            <dt>Company Link</dt>
+            <dd><%= link_to_unless @opportunity.company_link.blank?, nil, @opportunity.company_link, target: "_blank", rel: "nofollow" %></dd>
+            <dt>Position</dt>
+            <dd><%= @opportunity.position %></dd>
+            <dt>Job Description Link</dt>
+            <dd><%= link_to_unless @opportunity.job_description_link.blank?, nil, @opportunity.job_description_link, target: "_blank", rel: "nofollow" %></dd>
+            <dt>Created at</dt>
+            <dd><%= datetime_format_full(@opportunity.created_at) %></dd>
+            <dt>Updated at</dt>
+            <dd><%= datetime_format_full(@opportunity.updated_at) %></dd>
+            <dt>Job Description</dt>
+            <dd><%= @opportunity.job_description %></dd>
+            <dt>Notes</dt>
+            <%# can use https://getbootstrap.com/docs/5.2/components/accordion/ to collapse/expand long notes %>
+            <%# or https://jsfiddle.net/davidliang2008/cu0p613v/ %>
+            <dd><%= @opportunity.notes %></dd>
+        </dl>
+
+        <hr>
+
+        <div class="row">
+            <h2>
+                Process Steps
+                <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#<%= dom_id(ProcessStep.new)%>"><i class="bi bi-journal-plus"></i></a>
+            </h2>
+        </div>
+
+        <hr>
+
+        <% @opportunity.process_steps.each do |process_step| %>
+            <div class="row">
+                <div>
+                    <%= render partial: "process_steps/show", locals: {opportunity: @opportunity, process_step: process_step} %>
+                    <%# this should be optimized to avoid prematurely generating all that HTML needlessly %>
+                    <%= render partial: "process_steps/form", locals: {opportunity: @opportunity, process_step: process_step} %>
+                    <hr>
+                </div>
+            </div>
+        <% end %>
+
+    </div>
+    <div class="col-4">
+        <h2>
+            Contacts
+            <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#<%= dom_id(Contact.new)%>"><i class="bi bi-person-plus"></i></a>
+        </h2>
+        <dL>
+            <% @opportunity.contacts.each do |contact| %>
+                <div>
+                    <%= render partial: "contacts/show", locals: {contact: contact, contactable: @opportunity} %>
+                    <%# this should be optimized to avoid prematurely generating all that HTML needlessly %>
+                    <%= render partial: "contacts/form", locals: {contactable: @opportunity, contact: contact} %>
+                    <hr>
+                </div>
+            <% end %>
+        </dl>
+    </div>
+</div>
+
+<%= render partial: "contacts/form", locals: {contactable: @opportunity, contact: Contact.new} %>
+<%= render partial: "process_steps/form", locals: {opportunity: @opportunity, process_step: ProcessStep.new} %>

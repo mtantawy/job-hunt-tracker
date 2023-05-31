@@ -1,0 +1,40 @@
+<h1>Opportunities</h1>
+
+<div class="row py-3">
+    <%= link_to new_opportunity_path do %>
+        <i class="bi bi-plus-circle"></i> Create new Opportunity
+    <% end %>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Company Name</th>
+            <th scope="col">Company Link</th>
+            <th scope="col">Source Name</th>
+            <th scope="col">Source Link</th>
+            <th scope="col">State</th>
+            <th scope="col">Date</th>
+            <th scope="col">Latest Process Step</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @opportunities.each do |opportunity| %>
+            <tr>
+            <td><%= link_to opportunity.company_name, opportunity %></td>
+            <td><%= link_to_unless opportunity.company_link.blank?, url_preview(opportunity.company_link), opportunity.company_link, target: "_blank", rel: "nofollow" %></td>
+            <td><%= opportunity.source_name %></td>
+            <td><%= link_to_unless opportunity.source_link.blank?, url_preview(opportunity.source_link), opportunity.source_link, target: "_blank", rel: "nofollow" %></td>
+            <td><%= opportunity.state.capitalize %></td>
+            <td><%= date_format_short(opportunity.created_at) %></td>
+            <td>
+                <% if opportunity.latest_process_step.present? %>
+                    <%= opportunity.latest_process_step.title %>
+                    @ <%= date_format_short(opportunity.latest_process_step.created_at) %>
+                    [<%= ProcessStep.states[opportunity.latest_process_step.state].capitalize %>]
+                <% end %>
+            </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

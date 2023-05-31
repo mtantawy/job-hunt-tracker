@@ -1,0 +1,43 @@
+<div class="modal fade" id="<%= dom_id(contact) %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="<%= dom_id(contact) %>ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="<%= dom_id(contact) %>ModalLabel">Contact</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <%= form_with model: [contactable, contact], class: "form" do |form| %>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <%= form.label "Name", class: "form-label" %>
+                        <%= form.text_field :name, class: "form-control", required: true %>
+                    </div>
+
+                    <div class="mb-3">
+                        <%= form.label "Email", class: "form-label" %>
+                        <%= form.email_field :email, class: "form-control" %>
+                    </div>
+
+                    <div class="mb-3">
+                        <%= form.label "Phone", class: "form-label" %>
+                        <%= form.phone_field :phone, class: "form-control" %>
+                    </div>
+
+                    <div class="mb-3">
+                        <%= form.label "Link", class: "form-label" %>
+                        <%= form.url_field :link, class: "form-control" %>
+                    </div>
+
+                    <div class="mb-3">
+                        <%= form.label "Notes", class: "form-label" %>
+                        <%= form.rich_text_area :notes, class: "form-control" %>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <%= form.button class: "btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

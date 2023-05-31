@@ -1,0 +1,46 @@
+<div class="modal fade" id="<%= dom_id(process_step) %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="<%= dom_id(process_step) %>ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="<%= dom_id(process_step) %>ModalLabel">Process Step</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <%= form_with model: [opportunity, process_step], class: "form" do |form| %>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <%= form.label "Title", class: "form-label" %>
+                        <%= form.text_field :title, class: "form-control", required: true %>
+                    </div>
+
+                    <div class="mb-3">
+                        <%= form.label "State", class: "form-label" %>
+                        <%= form.collection_radio_buttons :state, ProcessStep.states, :first, :second do |b| %>
+                            <div class="form-check">
+                                <% element_id = "#{dom_id(process_step)}-#{b.value}" %>
+                                <%= b.radio_button class: "form-check-input", id: element_id %>
+                                <%= b.label class: "form-label-label", for: element_id do %>
+                                    <%= b.text.capitalize %>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+
+                    <div class="mb-3">
+                        <%= form.label "Notes", class: "form-label" %>
+                        <%= form.rich_text_area :notes, class: "form-control" %>
+                    </div>
+
+                    <div class="mb-3">
+                        <%= form.label "Date", class: "form-label" %>
+                        <%= form.date_field :created_at, class: "form-control", include_seconds: false, max: Date.current %>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <%= form.button class: "btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

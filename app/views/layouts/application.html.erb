@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JobHuntTracker</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="container py-4">
+    <header>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <%= image_tag "job-hunt-tracker-logo.png", height: "150", class: "rounded mx-auto d-block" %>
+        </div>
+        <div class="col text-end">
+          <% if signed_in? %>
+            Signed in as: <%= current_user.email %>
+            <%= button_to 'Sign out', sign_out_path, method: :delete, class: "btn btn-outline-secondary" %>
+          <% end %>
+        </div>
+      </div>
+
+    </header>
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+
+    <%= yield %>
+  </body>
+</html>

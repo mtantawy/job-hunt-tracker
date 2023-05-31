@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_name: MyCompany
+  source_name: MyString
+  source_link: MyString
+  state: exploring
+
+two:
+  company_name: MyCompany
+  source_name: MyString
+  source_link: MyString
+  state: ongoing

@@ -1,0 +1,7 @@
+<h1>New Opportunity</h1>
+
+<div class="row py-3">
+    <%= link_to "View all Opportunities", opportunities_path %>
+</div>
+
+<%= render partial: "form", locals: {opportunity: @opportunity} %>

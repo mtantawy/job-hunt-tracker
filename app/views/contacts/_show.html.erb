@@ -1,0 +1,28 @@
+<dl>
+    <dd>
+        <i class="bi bi-person-vcard"></i> <%= contact.name %>
+        <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#<%= dom_id(contact) %>"><i class="bi bi-pencil"></i></a>
+        <%= link_to polymorphic_path([contactable, contact]), class: "link-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+            <i class="bi bi-trash"></i>
+        <% end %>
+    </dd>
+
+    <% if contact.email.present? %>
+        <dd><i class="bi bi-envelope-at"></i> <%= mail_to contact.email %></dd>
+    <% end %>
+
+    <% if contact.phone.present? %>
+        <dd><i class="bi bi-telephone"></i> <%= phone_to contact.phone %></dd>
+    <% end %>
+
+    <% if contact.link.present? %>
+        <dd>
+            <i class="bi bi-link"></i>
+            <%= link_to contact.link, contact.link, target: "_blank", rel: "nofollow" %>
+        </dd>
+    <% end %>
+
+    <% if contact.notes.present? %>
+        <dd><%= contact.notes %></dd>
+    <% end %>
+</dl>

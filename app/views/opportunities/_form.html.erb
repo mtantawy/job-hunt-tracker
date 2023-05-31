@@ -1,0 +1,68 @@
+<%= form_with model: @opportunity, class: "form" do |form| %>
+    <% if form.object.errors.any? %>
+        <div class="row">
+            <% form.object.errors.full_messages.each do |message| %>
+                <div class="alert alert-danger"><%= message %></div>
+            <% end %>
+        </div>
+    <% end %>
+    <div class="mb-3">
+        <%= form.label "Company Name", class: "form-label" %>
+        <%= form.text_field :company_name, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Company Link", class: "form-label" %>
+        <%= form.url_field :company_link, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Source Name", class: "form-label" %>
+        <%= form.text_field :source_name, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Source Link", class: "form-label" %>
+        <%= form.url_field :source_link, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Position", class: "form-label" %>
+        <%= form.text_field :position, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Job Description Link", class: "form-label" %>
+        <%= form.url_field :job_description_link, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Job Description", class: "form-label" %>
+        <%= form.rich_text_area :job_description, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "State", class: "form-label" %>
+        <%= form.collection_radio_buttons :state, Opportunity.states, :first, :second do |b| %>
+            <div class="form-check">
+                <%= b.radio_button class: "form-check-input" %>
+                <%= b.label class: "form-label-label" do %>
+                    <%= b.text.capitalize %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Notes", class: "form-label" %>
+        <%= form.rich_text_area :notes, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Date", class: "form-label" %>
+        <%= form.date_field :created_at, class: "form-control", include_seconds: false, max: Date.current %>
+    </div>
+
+
+    <%= form.button class: "btn btn-primary" %>
+<% end %>
