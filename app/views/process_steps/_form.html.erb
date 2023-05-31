@@ -31,6 +31,11 @@
                     </div>
 
                     <div class="mb-3">
+                        <%= form.label "Scheduled For", class: "form-label" %>
+                        <%= form.date_field :scheduled_for, class: "form-control", include_seconds: false %>
+                    </div>
+
+                    <div class="mb-3">
                         <%= form.label "Date", class: "form-label" %>
                         <%= form.date_field :created_at, class: "form-control", include_seconds: false, max: Date.current %>
                     </div>

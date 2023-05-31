@@ -31,11 +31,9 @@
             <dt>Updated at</dt>
             <dd><%= datetime_format_full(@opportunity.updated_at) %></dd>
             <dt>Job Description</dt>
-            <dd><%= @opportunity.job_description %></dd>
+            <%= render partial: "layouts/rich_text_area", locals: {content: @opportunity.job_description} %>
             <dt>Notes</dt>
-            <%# can use https://getbootstrap.com/docs/5.2/components/accordion/ to collapse/expand long notes %>
-            <%# or https://jsfiddle.net/davidliang2008/cu0p613v/ %>
-            <dd><%= @opportunity.notes %></dd>
+            <%= render partial: "layouts/rich_text_area", locals: {content: @opportunity.notes} %>
         </dl>
 
         <hr>

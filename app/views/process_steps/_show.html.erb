@@ -11,7 +11,12 @@
         </h3>
     </dd>
 
-    <dd><%= process_step.notes %></dd>
+    <%= render partial: "layouts/rich_text_area", locals: {content: process_step.notes} %>
+
+    <% if process_step.scheduled_for.present? %>
+        <dt>Scheduled for</dt>
+        <dd><%= datetime_format_full(process_step.scheduled_for) %></dd>
+    <% end %>
 
     <dt>Created at</dt>
     <dd><%= datetime_format_full(process_step.created_at) %></dd>

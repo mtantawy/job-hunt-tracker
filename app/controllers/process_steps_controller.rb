@@ -27,6 +27,7 @@ class ProcessStepsController < ApplicationController
       :state,
       :notes,
       :created_at,
+      :scheduled_for,
     )
   end
 

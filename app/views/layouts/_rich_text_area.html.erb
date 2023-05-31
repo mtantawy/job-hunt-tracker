@@ -1,0 +1,18 @@
+<% if content.to_plain_text.length > 100 %>
+    <div class="accordion" id="accordion-<%= dom_id(content) %>">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading-<%= dom_id(content) %>">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<%= dom_id(content) %>" aria-expanded="true" aria-controls="collapse-<%= dom_id(content) %>">
+                    <%= notes_preview(content) %>
+                </button>
+            </h2>
+            <div id="collapse-<%= dom_id(content) %>" class="accordion-collapse collapse" aria-labelledby="heading-<%= dom_id(content) %>" data-bs-parent="#accordion-<%= dom_id(content) %>">
+                <div class="accordion-body">
+                    <dd><%= content %></dd>
+                </div>
+            </div>
+        </div>
+    </div>
+<% else %>
+    <dd><%= content %></dd>
+<% end %>
