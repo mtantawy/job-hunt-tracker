@@ -18,7 +18,7 @@
     <% if contact.link.present? %>
         <dd>
             <i class="bi bi-link"></i>
-            <%= link_to contact.link, contact.link, target: "_blank", rel: "nofollow" %>
+            <%= link_to url_preview(contact.link), contact.link, target: "_blank", rel: "nofollow" %>
         </dd>
     <% end %>
 
