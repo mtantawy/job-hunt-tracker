@@ -37,7 +37,7 @@
 
                     <div class="mb-3">
                         <%= form.label "Date", class: "form-label" %>
-                        <%= form.date_field :created_at, class: "form-control", include_seconds: false, max: Time.current.getlocal.to_date %>
+                        <%= form.datetime_field :created_at, class: "form-control", include_seconds: false, max: current_datetime_in_user_timezone %>
                     </div>
                 </div>
 

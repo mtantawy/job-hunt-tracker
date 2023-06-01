@@ -14,4 +14,8 @@ module ApplicationHelper
   def notes_preview(notes)
     notes.to_plain_text.slice(0..100).squish + "..."
   end
+
+  def current_datetime_in_user_timezone
+    Time.current.in_time_zone("CET")
+  end
 end

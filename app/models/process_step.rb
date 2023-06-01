@@ -8,9 +8,9 @@ class ProcessStep < ApplicationRecord
   belongs_to :opportunity, touch: true
 
   validates :title, presence: true
-  validates :state, comparison: { equal_to: "scheduled" }, if: -> { scheduled_for.present? }
+  validates :state, comparison: { equal_to: "scheduled" }, if: -> { scheduled_for.present? && scheduled_for.future? }
 
-  before_validation { self.state = :scheduled if scheduled_for.present? }
+  before_validation { self.state = :scheduled if scheduled_for.present? && scheduled_for.future? }
 
   enum state: {
          waiting_on_me: "waiting on me",
