@@ -22,7 +22,9 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Install dependencies
         run: bundle install
+      - name: Setup database
+        run: bundle exec rails db:prepare
       - name: Run tests
-        run: bundle exec rake
+        run: bundle exec rails test
       - name: Rubocop
         run: bundle exec rubocop
