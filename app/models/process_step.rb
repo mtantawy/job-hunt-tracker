@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ProcessStep < ApplicationRecord
+  include ConvertFromAndToUserTimezone
+
   has_rich_text :notes
 
   belongs_to :opportunity, touch: true

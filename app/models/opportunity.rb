@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Opportunity < ApplicationRecord
+  include ConvertFromAndToUserTimezone
+
   has_rich_text :job_description
   has_rich_text :notes
   has_many :contacts, as: :contactable, dependent: :destroy
