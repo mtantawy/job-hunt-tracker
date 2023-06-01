@@ -30,8 +30,11 @@
             <td>
                 <% if opportunity.latest_process_step.present? %>
                     <%= opportunity.latest_process_step.title %>
-                    @ <%= date_format_short(opportunity.latest_process_step.created_at) %>
+                    <i class="bi bi-calendar-check"></i> <%= date_format_short(opportunity.latest_process_step.created_at) %>
                     [<%= ProcessStep.states[opportunity.latest_process_step.state].capitalize %>]
+                    <% if opportunity.latest_process_step.scheduled_for.present? %>
+                    <i class="bi bi-alarm"></i> <%= date_format_short(opportunity.latest_process_step.scheduled_for) %>
+                    <% end %>
                 <% end %>
             </td>
             </tr>
