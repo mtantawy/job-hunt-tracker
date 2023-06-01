@@ -10,7 +10,7 @@ class ProcessStep < ApplicationRecord
   validates :title, presence: true
   validates :state, comparison: { equal_to: "scheduled" }, if: -> { scheduled_for.present? }
 
-  before_save { self.state = :scheduled if scheduled_for.present? }
+  before_validation { self.state = :scheduled if scheduled_for.present? }
 
   enum state: {
          waiting_on_me: "waiting on me",
