@@ -28,6 +28,7 @@ class ContactsController < ApplicationController
       :phone,
       :link,
       :notes,
+      :role,
     )
   end
 

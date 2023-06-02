@@ -7,6 +7,10 @@
         <% end %>
     </dd>
 
+    <% if contact.role.present? %>
+        <dd><i class="bi bi-award-fill"></i> <%= contact.role %></dd>
+    <% end %>
+
     <% if contact.email.present? %>
         <dd><i class="bi bi-envelope-at"></i> <%= mail_to contact.email %></dd>
     <% end %>

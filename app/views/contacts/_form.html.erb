@@ -28,6 +28,11 @@
                     </div>
 
                     <div class="mb-3">
+                        <%= form.label "Role", class: "form-label" %>
+                        <%= form.text_field :role, class: "form-control" %>
+                    </div>
+
+                    <div class="mb-3">
                         <%= form.label "Notes", class: "form-label" %>
                         <%= form.rich_text_area :notes, class: "form-control" %>
                     </div>
