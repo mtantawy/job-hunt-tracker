@@ -46,12 +46,35 @@ Confirm with `env | grep -i RAILS_MASTER_KEY`
 
 This will build the image and run the container in detached mode.
 
+For newer versions, an image needs to be rebuilt, container(s) stopped, and restarted using something along the lines of
+
+`docker compose build app && docker compose down && docker compose up -d`
+
 ### Create user for login
 `docker-compose exec -it app bash`
 
 `bin/rails c`
 
 `User.create!(email: "email@example.com", password: "123456")`
+
+### I don't have access to the master.key, what do I do?
+So far, there is nothing special stored in the excrypted credentials file, so you can safely regenerate the master.key and credentials.yml.enc files.
+
+The easiest way is by running `bin/rails credentials:edit` and saving the file. (might need to delete the existing credentials.yml.enc file first)
+#### What if I don't have access to rails command?
+You can run `rails` as a docker container, but you will need to mount the app directory as a volume
+
+`docker run --rm -it -v ${PWD}:/rails ghcr.io/rails/cli bash`
+
+Install dependencies with `bundle install`
+
+Delete existing encrypted credentials `rm config/credentials.yml.enc`
+
+Generate new master.key and credentials.yml.enc `EDITOR=vim bin/rails credentials:edit`
+
+Then follow Docker Setup or Docker Compose Setup above, remember to export the env variable `RAILS_MASTER_KEY`.
+
+Do you know a better way of doing this? Please let me know!
 
 ### (Optional) Create sample data
 Uncomment the code in `db/seeds.rb` and run `bin/rails db:seed`

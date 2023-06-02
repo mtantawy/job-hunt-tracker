@@ -20,5 +20,8 @@ module JobHuntTracker
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # sqlite is good enough for now
+    config.active_record.sqlite3_production_warning = false
   end
 end
