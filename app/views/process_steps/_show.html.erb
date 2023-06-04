@@ -11,6 +11,12 @@
         </h3>
     </dd>
 
+    <% if process_step.contacts.any? %>
+        <dd>
+            with <%= process_step.contacts.map(&:name).to_sentence %>
+        </dd>
+    <% end %>
+
     <%= render partial: "layouts/rich_text_area", locals: {content: process_step.notes} %>
 
     <% if process_step.scheduled_for.present? %>

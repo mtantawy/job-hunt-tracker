@@ -5,12 +5,14 @@ class ProcessStepsController < ApplicationController
   before_action :set_process_step, only: [:update, :destroy]
 
   def create
-    @opportunity.process_steps.create!(process_step_params)
+    process_step = @opportunity.process_steps.create!(process_step_params.except(:contact_ids))
+    process_step.contacts = Contact.where(id: process_step_params[:contact_ids])
     redirect_to(@opportunity)
   end
 
   def update
-    @process_step.update!(process_step_params)
+    @process_step.update!(process_step_params.except(:contact_ids))
+    @process_step.contacts = Contact.where(id: process_step_params[:contact_ids])
     redirect_to(@opportunity)
   end
 
@@ -28,6 +30,7 @@ class ProcessStepsController < ApplicationController
       :notes,
       :created_at,
       :scheduled_for,
+      contact_ids: [],
     )
   end
 

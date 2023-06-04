@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_06_02_144950) do
+ActiveRecord::Schema[7.1].define(version: 2023_06_04_165305) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -60,6 +60,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_06_02_144950) do
     t.datetime "updated_at", null: false
     t.string "role"
     t.index ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable"
+  end
+
+  create_table "contacts_process_steps", id: false, force: :cascade do |t|
+    t.integer "process_step_id", null: false
+    t.integer "contact_id", null: false
+    t.index ["contact_id", "process_step_id"], name: "index_contacts_process_steps_on_contact_id_and_process_step_id"
+    t.index ["process_step_id", "contact_id"], name: "index_contacts_process_steps_on_process_step_id_and_contact_id"
   end
 
   create_table "opportunities", force: :cascade do |t|

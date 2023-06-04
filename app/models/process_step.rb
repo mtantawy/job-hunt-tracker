@@ -7,6 +7,10 @@ class ProcessStep < ApplicationRecord
 
   belongs_to :opportunity, touch: true
 
+  # rubocop:disable Rails/HasAndBelongsToMany
+  has_and_belongs_to_many :contacts
+  # rubocop:enable Rails/HasAndBelongsToMany
+
   validates :title, presence: true
   validates :state, comparison: { equal_to: "scheduled" }, if: -> { scheduled_for.present? && scheduled_for.future? }
 
