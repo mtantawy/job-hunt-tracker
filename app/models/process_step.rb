@@ -16,8 +16,6 @@ class ProcessStep < ApplicationRecord
 
   before_validation { self.state = :scheduled if scheduled_for.present? && scheduled_for.future? }
 
-  scope :sorted, -> { order(scheduled_for: :desc, created_at: :desc) }
-
   enum state: {
          waiting_on_me: "waiting on me",
          waiting_on_them: "waiting on them",

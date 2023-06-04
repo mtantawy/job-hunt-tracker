@@ -25,7 +25,7 @@ class Opportunity < ApplicationRecord
     _default: "exploring"
 
   def latest_process_step
-    process_steps.sorted.first
+    process_steps.last
   end
 
   def update_state_based_on_process_steps(_)
