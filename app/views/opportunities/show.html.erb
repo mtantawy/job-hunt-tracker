@@ -47,7 +47,7 @@
 
         <hr>
 
-        <% @opportunity.process_steps.each do |process_step| %>
+        <% @opportunity.process_steps.sorted.each do |process_step| %>
             <div class="row">
                 <div>
                     <%= render partial: "process_steps/show", locals: {opportunity: @opportunity, process_step: process_step} %>
