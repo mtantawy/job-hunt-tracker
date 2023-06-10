@@ -5,7 +5,7 @@ class OpportunitiesController < ApplicationController
   before_action :set_opportunity, only: [:show, :edit, :update, :destroy]
 
   def index
-    @opportunities = Opportunity.sorted
+    @grouped_opportunities = Opportunity.sorted.group_by { |opportunity| opportunity.latest_process_step.state }
   end
 
   def show
