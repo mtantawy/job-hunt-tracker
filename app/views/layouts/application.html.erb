@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Job Hunt Tracker</title>
+    <title>
+      <%= yield :opportunity_title %>
+      <%=  " | " if content_for?(:opportunity_title) %>
+      Job Hunt Tracker
+    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
