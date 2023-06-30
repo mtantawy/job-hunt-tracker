@@ -9,4 +9,10 @@ module OpportunitiesHelper
 
     url[0..20] + "..."
   end
+
+  def group_by_state(opportunities)
+    opportunities.group_by do |opportunity|
+      opportunity.latest_process_step.state
+    end.sort_by { |state, _opportunities| ProcessStep.states.keys.index(state) }.to_h
+  end
 end

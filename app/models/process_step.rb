@@ -18,8 +18,8 @@ class ProcessStep < ApplicationRecord
 
   enum state: {
          waiting_on_me: "waiting on me",
-         waiting_on_them: "waiting on them",
          scheduled: "scheduled",
+         waiting_on_them: "waiting on them",
          done: "done",
        },
     _default: "waiting on me"

@@ -6,11 +6,12 @@
     <% end %>
 </div>
 
-<% ["waiting_on_me", "waiting_on_them", "scheduled", "done"].each do |latest_process_step_state| %>
+<% grouped_opportunities = group_by_state(@opportunities) %>
+<% grouped_opportunities.each do |latest_process_step_state, opportunities| %>
     <h2><%= ProcessStep.states[latest_process_step_state].titleize %></h2>
-    <% if @grouped_opportunities[latest_process_step_state].blank? %>
+    <% if grouped_opportunities[latest_process_step_state].blank? %>
         <p class="text-muted">No opportunities with latest process step in this state.</p>
         <% next %>
     <% end %>
-    <%= render partial: "opportunities_list", locals: { opportunities: @grouped_opportunities[latest_process_step_state] } %>
+    <%= render partial: "opportunities_list", locals: { opportunities: opportunities } %>
 <% end %>
