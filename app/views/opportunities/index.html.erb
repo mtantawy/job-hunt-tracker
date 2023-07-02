@@ -8,6 +8,7 @@
 
 <% grouped_opportunities = group_by_state(@opportunities) %>
 <% grouped_opportunities.each do |latest_process_step_state, opportunities| %>
+    <% sort_by_scheduled_for(opportunities) if latest_process_step_state == ProcessStep.states[:scheduled] %>
     <h2><%= ProcessStep.states[latest_process_step_state].titleize %></h2>
     <% if grouped_opportunities[latest_process_step_state].blank? %>
         <p class="text-muted">No opportunities with latest process step in this state.</p>

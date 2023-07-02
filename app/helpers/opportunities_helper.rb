@@ -15,4 +15,8 @@ module OpportunitiesHelper
       opportunity.latest_process_step.state
     end.sort_by { |state, _opportunities| ProcessStep.states.keys.index(state) }.to_h
   end
+
+  def sort_by_scheduled_for(opportunities)
+    opportunities.sort_by! { |opportunity| opportunity.latest_process_step.scheduled_for }
+  end
 end
