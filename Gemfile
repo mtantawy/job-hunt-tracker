@@ -81,3 +81,6 @@ gem "clearance", "~> 2.6"
 gem "cssbundling-rails", "~> 1.1"
 
 gem "faker"
+
+# https://stackify.com/rack-mini-profiler-a-complete-guide-on-rails-performance/
+gem "rack-mini-profiler"

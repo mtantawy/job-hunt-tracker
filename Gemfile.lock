@@ -202,6 +202,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (3.0.8)
+    rack-mini-profiler (3.1.0)
+      rack (>= 1.2.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -316,6 +318,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   puma (>= 5.0)
+  rack-mini-profiler
   rails!
   redis (>= 4.0.1)
   rubocop-rails
@@ -334,4 +337,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.4.13
+   2.4.15
