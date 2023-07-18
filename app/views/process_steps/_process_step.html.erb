@@ -5,7 +5,7 @@
             <!-- change badge color based on state? -->
             <span class="badge text-bg-primary rounded-pill"><%= ProcessStep.states[process_step.state].capitalize %></span>
             <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#<%= dom_id(process_step) %>"><i class="bi bi-pencil fs-4"></i></a>
-            <%= link_to opportunity_process_step_path(opportunity, process_step), class: "link-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+            <%= link_to opportunity_process_step_path(process_step.opportunity, process_step), class: "link-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
                 <i class="bi bi-trash fs-4"></i>
             <% end %>
         </h3>

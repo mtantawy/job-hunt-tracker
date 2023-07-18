@@ -1,0 +1,22 @@
+<dl>
+    <dt>Source Name</dt>
+    <dd><%= @opportunity.source_name %></dd>
+    <dt>Source Link</dt>
+    <dd><%= link_to_unless @opportunity.source_link.blank?, nil, @opportunity.source_link, target: "_blank", rel: "nofollow" %></dd>
+    <dt>Company Name</dt>
+    <dd><%= @opportunity.company_name %></dd>
+    <dt>Company Link</dt>
+    <dd><%= link_to_unless @opportunity.company_link.blank?, nil, @opportunity.company_link, target: "_blank", rel: "nofollow" %></dd>
+    <dt>Position</dt>
+    <dd><%= @opportunity.position %></dd>
+    <dt>Job Description Link</dt>
+    <dd><%= link_to_unless @opportunity.job_description_link.blank?, nil, @opportunity.job_description_link, target: "_blank", rel: "nofollow" %></dd>
+    <dt>Created at</dt>
+    <dd><%= datetime_format_full(@opportunity.created_at) %></dd>
+    <dt>Updated at</dt>
+    <dd><%= datetime_format_full(@opportunity.updated_at) %></dd>
+    <dt>Job Description</dt>
+    <%= render partial: "layouts/rich_text_area", locals: {content: @opportunity.job_description} %>
+    <dt>Notes</dt>
+    <%= render partial: "layouts/rich_text_area", locals: {content: @opportunity.notes} %>
+</dl>

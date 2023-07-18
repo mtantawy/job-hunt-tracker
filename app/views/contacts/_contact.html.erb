@@ -2,7 +2,7 @@
     <dd>
         <i class="bi bi-person-vcard"></i> <%= contact.name %>
         <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#<%= dom_id(contact) %>"><i class="bi bi-pencil"></i></a>
-        <%= link_to polymorphic_path([contactable, contact]), class: "link-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <%= link_to polymorphic_path([contact.contactable, contact]), class: "link-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
             <i class="bi bi-trash"></i>
         <% end %>
     </dd>

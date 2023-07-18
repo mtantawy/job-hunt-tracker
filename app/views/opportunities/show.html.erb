@@ -14,28 +14,9 @@
 
 <div class="row">
     <div class="col-8">
-        <dl>
-            <dt>Source Name</dt>
-            <dd><%= @opportunity.source_name %></dd>
-            <dt>Source Link</dt>
-            <dd><%= link_to_unless @opportunity.source_link.blank?, nil, @opportunity.source_link, target: "_blank", rel: "nofollow" %></dd>
-            <dt>Company Name</dt>
-            <dd><%= @opportunity.company_name %></dd>
-            <dt>Company Link</dt>
-            <dd><%= link_to_unless @opportunity.company_link.blank?, nil, @opportunity.company_link, target: "_blank", rel: "nofollow" %></dd>
-            <dt>Position</dt>
-            <dd><%= @opportunity.position %></dd>
-            <dt>Job Description Link</dt>
-            <dd><%= link_to_unless @opportunity.job_description_link.blank?, nil, @opportunity.job_description_link, target: "_blank", rel: "nofollow" %></dd>
-            <dt>Created at</dt>
-            <dd><%= datetime_format_full(@opportunity.created_at) %></dd>
-            <dt>Updated at</dt>
-            <dd><%= datetime_format_full(@opportunity.updated_at) %></dd>
-            <dt>Job Description</dt>
-            <%= render partial: "layouts/rich_text_area", locals: {content: @opportunity.job_description} %>
-            <dt>Notes</dt>
-            <%= render partial: "layouts/rich_text_area", locals: {content: @opportunity.notes} %>
-        </dl>
+        <% cache @opportunity do %>
+            <%= render @opportunity %>
+        <% end %>
 
         <hr>
 
@@ -51,9 +32,11 @@
         <% @opportunity.process_steps.reverse.each do |process_step| %>
             <div class="row">
                 <div>
-                    <%= render partial: "process_steps/show", locals: {opportunity: @opportunity, process_step: process_step} %>
-                    <%# this should be optimized to avoid prematurely generating all that HTML needlessly %>
-                    <%= render partial: "process_steps/form", locals: {opportunity: @opportunity, process_step: process_step} %>
+                    <% cache process_step do %>
+                        <%= render process_step %>
+                        <%# this should be optimized to avoid prematurely generating all that HTML needlessly %>
+                        <%= render partial: "process_steps/form", locals: {opportunity: @opportunity, process_step: process_step} %>
+                    <% end %>
                     <hr>
                 </div>
             </div>
@@ -68,9 +51,11 @@
         <dL>
             <% @opportunity.contacts.each do |contact| %>
                 <div>
-                    <%= render partial: "contacts/show", locals: {contact: contact, contactable: @opportunity} %>
-                    <%# this should be optimized to avoid prematurely generating all that HTML needlessly %>
-                    <%= render partial: "contacts/form", locals: {contactable: @opportunity, contact: contact} %>
+                    <% cache contact do %>
+                        <%= render contact %>
+                        <%# this should be optimized to avoid prematurely generating all that HTML needlessly %>
+                        <%= render partial: "contacts/form", locals: {contactable: @opportunity, contact: contact} %>
+                    <% end %>
                     <hr>
                 </div>
             <% end %>
