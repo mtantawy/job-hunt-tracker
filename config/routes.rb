@@ -14,4 +14,6 @@ Rails.application.routes.draw do
     resources :contacts, module: :opportunities, only: [:create, :destroy, :update]
     resources :process_steps, module: :opportunities, only: [:create, :destroy, :update]
   end
+
+  get "stats" => "stats#index", as: :stats
 end
