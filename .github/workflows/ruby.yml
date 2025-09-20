@@ -17,6 +17,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '3.4.5'
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: print ruby version
         run: ruby -v
