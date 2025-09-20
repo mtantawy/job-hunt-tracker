@@ -17,12 +17,13 @@ class Opportunity < ApplicationRecord
 
   scope :sorted, -> { order(updated_at: :desc) }
 
-  enum state: {
-         exploring: "exploring",
-         ongoing: "ongoing",
-         closed: "closed",
-       },
-    _default: "exploring"
+  enum :state,
+    {
+      exploring: "exploring",
+      ongoing: "ongoing",
+      closed: "closed",
+    },
+    default: "exploring"
 
   def latest_process_step
     @latest_process_step ||= process_steps.last

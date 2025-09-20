@@ -16,11 +16,12 @@ class ProcessStep < ApplicationRecord
 
   before_validation { self.state = :scheduled if scheduled_for.present? && scheduled_for.future? }
 
-  enum state: {
-         waiting_on_me: "waiting on me",
-         scheduled: "scheduled",
-         waiting_on_them: "waiting on them",
-         done: "done",
-       },
-    _default: "waiting on me"
+  enum :state,
+    {
+      waiting_on_me: "waiting on me",
+      scheduled: "scheduled",
+      waiting_on_them: "waiting on them",
+      done: "done",
+    },
+    default: "waiting on me"
 end

@@ -47,7 +47,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
       post opportunities_path, params: { opportunity: { company_name: nil } }
     end
 
-    assert_response :unprocessable_entity
+    assert_response :unprocessable_content
   end
 
   test "should update opportunity" do
@@ -62,7 +62,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
     sign_in
     opportunities(:one).update!(company_name: "Test Company")
     patch opportunity_path(opportunities(:one)), params: { opportunity: { company_name: nil } }
-    assert_response :unprocessable_entity
+    assert_response :unprocessable_content
     assert_equal "Test Company", opportunities(:one).reload.company_name
   end
 

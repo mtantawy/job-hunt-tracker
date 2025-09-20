@@ -18,8 +18,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: print ruby version
-        run: ruby -v
       - name: Install dependencies
         run: bundle install
       - name: Setup database

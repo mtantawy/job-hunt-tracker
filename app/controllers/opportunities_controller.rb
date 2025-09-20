@@ -24,7 +24,7 @@ class OpportunitiesController < ApplicationController
     if @opportunity.save
       redirect_to(@opportunity)
     else
-      render(:new, status: :unprocessable_entity)
+      render(:new, status: :unprocessable_content)
     end
   end
 
@@ -32,7 +32,7 @@ class OpportunitiesController < ApplicationController
     if @opportunity.update(opportunity_params)
       redirect_to(@opportunity)
     else
-      render(:edit, status: :unprocessable_entity)
+      render(:edit, status: :unprocessable_content)
     end
   end
 
