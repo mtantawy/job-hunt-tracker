@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+ruby "3.4.5"
 
 # Use main development branch of Rails
 gem "rails", github: "rails/rails", branch: "main"
@@ -84,3 +84,9 @@ gem "faker"
 
 # https://stackify.com/rack-mini-profiler-a-complete-guide-on-rails-performance/
 gem "rack-mini-profiler"
+
+gem "base64", "~> 0.3.0"
+
+gem "bigdecimal", "~> 3.2"
+
+gem "mutex_m", "~> 0.3.0"

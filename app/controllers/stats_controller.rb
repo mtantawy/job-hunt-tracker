@@ -43,6 +43,8 @@ class StatsController < ApplicationController
       .sort
       .to_h
 
+    return {} if interviews_per_day.empty?
+
     dates = (interviews_per_day.keys.first..interviews_per_day.keys.last).to_a
     dates.index_with do |date|
       interviews_per_day[date] || 0

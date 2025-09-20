@@ -103,7 +103,9 @@ GEM
       ffi (~> 1.15)
       ffi-compiler (~> 1.0)
     ast (2.4.2)
+    base64 (0.3.0)
     bcrypt (3.1.19)
+    bigdecimal (3.2.3)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -136,7 +138,7 @@ GEM
       reline (>= 0.3.1)
     email_validator (2.2.4)
       activemodel
-    error_highlight (0.5.1)
+    error_highlight (0.7.0)
     erubi (1.12.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
@@ -174,8 +176,10 @@ GEM
     matrix (0.4.2)
     mini_magick (4.12.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.9)
     minitest (5.18.1)
     msgpack (1.7.1)
+    mutex_m (0.3.0)
     net-imap (0.3.6)
       date
       net-protocol
@@ -186,11 +190,8 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.2-aarch64-linux)
-      racc (~> 1.4)
-    nokogiri (1.15.2-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.15.2-x86_64-linux)
+    nokogiri (1.15.2)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     parallel (1.23.0)
     parser (3.2.2.3)
@@ -267,9 +268,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.3-aarch64-linux)
-    sqlite3 (1.6.3-arm64-darwin)
-    sqlite3 (1.6.3-x86_64-linux)
+    sqlite3 (1.6.3)
+      mini_portile2 (~> 2.8.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     syntax_tree (6.1.1)
@@ -307,6 +307,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  base64 (~> 0.3.0)
+  bigdecimal (~> 3.2)
   bootsnap
   capybara
   clearance (~> 2.6)
@@ -317,6 +319,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  mutex_m (~> 0.3.0)
   puma (>= 5.0)
   rack-mini-profiler
   rails!
@@ -334,7 +337,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.4.5p51
 
 BUNDLED WITH
    2.4.15

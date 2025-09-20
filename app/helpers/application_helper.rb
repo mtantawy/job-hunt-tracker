@@ -16,6 +16,6 @@ module ApplicationHelper
   end
 
   def current_datetime_in_user_timezone
-    Time.current.in_time_zone("CET")
+    Time.current.in_time_zone("Berlin")
   end
 end

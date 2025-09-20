@@ -21,6 +21,6 @@ module ConvertFromAndToUserTimezone
 
   # update this methods to use logged in user's timezone
   def user_time_zone
-    "CET"
+    "Berlin"
   end
 end

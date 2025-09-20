@@ -7,7 +7,7 @@
         Interviews: <%= @interviews_count %>
         <br />
         Opportunities with most interviews (<%= @max_interviews_count %> interviews):
-        <%=  Opportunity.find(@opportunities_with_most_interviews).pluck(:company_name).to_sentence %>
+        <%=  Opportunity.find(@opportunities_with_most_interviews).pluck(:company_name).to_sentence unless @opportunities_with_most_interviews.nil? %>
     </div>
 </div>
 
@@ -15,7 +15,7 @@
   <canvas id="interviews-per-day"></canvas>
 </div>
 
-<!-- don't need this on evert page !-->
+<!-- don't need this on every page !-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
